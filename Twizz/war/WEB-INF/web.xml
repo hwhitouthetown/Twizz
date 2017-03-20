@@ -3,9 +3,17 @@
 		<servlet-name>Twizz</servlet-name>
 		<servlet-class>com.project.TwizzServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>UpdateDataStore</servlet-name>
+		<servlet-class>com.project.UpdateDataStoreServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Twizz</servlet-name>
 		<url-pattern>/twizz</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateDataStore</servlet-name>
+		<url-pattern>/admin/update</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
@@ -22,4 +30,5 @@
   <servlet-name>SystemServiceServlet</servlet-name>
   <url-pattern>/_ah/spi/*</url-pattern>
  </servlet-mapping>
+ 
 </web-app>
