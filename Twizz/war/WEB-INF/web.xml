@@ -7,6 +7,10 @@
 		<servlet-name>UpdateDataStore</servlet-name>
 		<servlet-class>com.project.UpdateDataStoreServlet</servlet-class>
 	</servlet>
+		<servlet>
+		<servlet-name>ConnectTwitter</servlet-name>
+		<servlet-class>com.project.connectTwitterServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Twizz</servlet-name>
 		<url-pattern>/twizz</url-pattern>
@@ -15,6 +19,12 @@
 		<servlet-name>UpdateDataStore</servlet-name>
 		<url-pattern>/admin/update</url-pattern>
 	</servlet-mapping>
+	
+		<servlet-mapping>
+		<servlet-name>ConnectTwitter</servlet-name>
+		<url-pattern>/admin/connect</url-pattern>
+	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>

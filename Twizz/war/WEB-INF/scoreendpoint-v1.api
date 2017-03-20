@@ -27,38 +27,26 @@
   "ownerDomain" : "entities.com",
   "ownerName" : "entities.com",
   "methods" : {
-    "scoreendpoint.getScore" : {
-      "path" : "scoreentity/{id}",
+    "scoreendpoint.listScore" : {
+      "path" : "scoreentity",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.endpoints.ScoreEndpoint.getScore",
+      "rosyMethod" : "com.endpoints.ScoreEndpoint.listScore",
       "request" : {
         "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
           }
         },
         "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "scoreendpoint.updateScore" : {
-      "path" : "scoreentity",
-      "httpMethod" : "PUT",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.endpoints.ScoreEndpoint.updateScore",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -72,6 +60,22 @@
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
       "rosyMethod" : "com.endpoints.ScoreEndpoint.insertScore",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "scoreendpoint.updateScore" : {
+      "path" : "scoreentity",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.endpoints.ScoreEndpoint.updateScore",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
@@ -101,23 +105,19 @@
         "body" : "empty"
       }
     },
-    "scoreendpoint.listScore" : {
-      "path" : "scoreentity",
+    "scoreendpoint.getScore" : {
+      "path" : "scoreentity/{id}",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.endpoints.ScoreEndpoint.listScore",
+      "rosyMethod" : "com.endpoints.ScoreEndpoint.getScore",
       "request" : {
         "parameters" : {
-          "cursor" : {
-            "type" : "string",
-            "required" : false
-          },
-          "limit" : {
-            "type" : "int32",
-            "required" : false
+          "id" : {
+            "type" : "int64",
+            "required" : true
           }
         },
         "body" : "empty"
@@ -129,6 +129,21 @@
   },
   "descriptor" : {
     "schemas" : {
+      "CollectionResponse_ScoreEntity" : {
+        "id" : "CollectionResponse_ScoreEntity",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "ScoreEntity"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
       "ScoreEntity" : {
         "id" : "ScoreEntity",
         "type" : "object",
@@ -144,25 +159,18 @@
             "type" : "integer"
           }
         }
-      },
-      "CollectionResponse_ScoreEntity" : {
-        "id" : "CollectionResponse_ScoreEntity",
-        "type" : "object",
-        "properties" : {
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "ScoreEntity"
-            }
-          },
-          "nextPageToken" : {
-            "type" : "string"
-          }
-        }
       }
     },
     "methods" : {
-      "com.endpoints.ScoreEndpoint.getScore" : {
+      "com.endpoints.ScoreEndpoint.listScore" : {
+        "response" : {
+          "$ref" : "CollectionResponse_ScoreEntity"
+        }
+      },
+      "com.endpoints.ScoreEndpoint.insertScore" : {
+        "request" : {
+          "$ref" : "ScoreEntity"
+        },
         "response" : {
           "$ref" : "ScoreEntity"
         }
@@ -175,19 +183,11 @@
           "$ref" : "ScoreEntity"
         }
       },
-      "com.endpoints.ScoreEndpoint.insertScore" : {
-        "request" : {
-          "$ref" : "ScoreEntity"
-        },
-        "response" : {
-          "$ref" : "ScoreEntity"
-        }
-      },
       "com.endpoints.ScoreEndpoint.removeScore" : {
       },
-      "com.endpoints.ScoreEndpoint.listScore" : {
+      "com.endpoints.ScoreEndpoint.getScore" : {
         "response" : {
-          "$ref" : "CollectionResponse_ScoreEntity"
+          "$ref" : "ScoreEntity"
         }
       }
     }
