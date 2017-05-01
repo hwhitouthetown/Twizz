@@ -75,6 +75,22 @@ public class Question {
 
 	public void setOthersChoices(ArrayList<String> othersChoices) {
 		this.othersChoices = othersChoices;
+	}
+
+
+	@Override
+	public String toString() {
+		
+		String other = ""; 
+		
+		for(int i = 0 ; i< othersChoices.size();i++){
+			
+			other += ":" + othersChoices.get(i); 
+			
+		}
+		
+		return "Question [id=" + id + ", nbChoices=" + nbChoices + ", content=" + content + ", reponse=" + reponse
+				+ ", othersChoices=" + other + "]";
 	} 
 }
 

@@ -131,9 +131,10 @@ public class CSVReader {
 
 				Entity e = new Entity(EntityName,object[1]);
 				e.setIndexedProperty("Theme", object[0]);
+				e.setIndexedProperty("RealName", "");
 				
 				themes.add(e);
-				logger.info("Object [Col1 = " + object[0] + "]" + "[Col2 = " + object[0] + "]");
+				logger.info("Object [Col1 = " + object[1] + "]" + "[Col2 = " + object[0] + "]");
 			}
 			
 			if(themes.size()>0){

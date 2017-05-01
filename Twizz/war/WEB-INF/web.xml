@@ -7,9 +7,14 @@
 		<servlet-name>UpdateDataStore</servlet-name>
 		<servlet-class>com.project.UpdateDataStoreServlet</servlet-class>
 	</servlet>
-		<servlet>
+	<servlet>
 		<servlet-name>ConnectTwitter</servlet-name>
 		<servlet-class>com.project.connectTwitterServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>UpdateName</servlet-name>
+		<servlet-class>com.project.UpdatePersonnalitiesNameServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Twizz</servlet-name>
@@ -18,6 +23,11 @@
 	<servlet-mapping>
 		<servlet-name>UpdateDataStore</servlet-name>
 		<url-pattern>/admin/update</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>UpdateName</servlet-name>
+		<url-pattern>/admin/updateName</url-pattern>
 	</servlet-mapping>
 	
 		<servlet-mapping>

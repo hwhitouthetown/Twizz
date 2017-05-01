@@ -8,6 +8,10 @@ public class Theme {
 
     @PrimaryKey
 	private String nom;
+   
+	public Theme(String nom) {
+		this.nom = nom;
+	}
 
 	public String getNom() {
 		return nom;
@@ -17,6 +21,10 @@ public class Theme {
 		this.nom = nom;
 	} 
 	
+	@Override
+	public String toString(){
+		return this.nom;
+	}
 	
 	
 }

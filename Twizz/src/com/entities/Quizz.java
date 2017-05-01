@@ -46,11 +46,25 @@ public class Quizz {
 	public void setQuestions(ArrayList<Question> questions) {
 		this.questions = questions;
 	}
+	
+	
+	public void addQuestion(Question q){
+		questions.add(q);
+	}
+	
+	
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	@Override
+	public String toString() {
+		return "Quizz [id=" + id + ", relatedTheme=" + relatedTheme + ", creationTime=" + creationTime + ", questions="
+				+ questions + "]";
 	} 
+	
+	
 	
 }
