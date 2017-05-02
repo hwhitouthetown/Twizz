@@ -8,6 +8,10 @@
 		<servlet-class>com.project.UpdateDataStoreServlet</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>Quizz</servlet-name>
+		<servlet-class>com.project.quizzServlet</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>ConnectTwitter</servlet-name>
 		<servlet-class>com.project.connectTwitterServlet</servlet-class>
 	</servlet>
@@ -19,6 +23,10 @@
 	<servlet-mapping>
 		<servlet-name>Twizz</servlet-name>
 		<url-pattern>/twizz</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Quizz</servlet-name>
+		<url-pattern>/quizz</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>UpdateDataStore</servlet-name>

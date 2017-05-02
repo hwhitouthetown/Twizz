@@ -8,6 +8,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Logger;
 
 import com.entities.Personnality;
+import com.entities.Question;
+import com.entities.Quizz;
 import com.entities.Theme;
 import com.exceptions.InvalidListThemeException;
 import com.google.appengine.api.datastore.DatastoreService;
@@ -42,6 +44,23 @@ public class Util {
 		String realName = e.getProperty("RealName").toString();
 		
 		return new Personnality(nom,theme,realName);
+	}
+	
+	
+	public static Question convertToQuestion(Entity e){
+		 
+		
+		Question q = new Question(); 
+		
+		q.setReponse(e.getProperty("correct").toString());
+		q.addChoice(e.getProperty("answer1").toString());
+		q.addChoice(e.getProperty("answer2").toString());
+		q.addChoice(e.getProperty("answer3").toString());
+		q.addChoice(e.getProperty("answer4").toString());
+		q.setContent(e.getProperty("Text").toString());
+	
+		
+		return q;
 	}
 	
 	public static Theme convertToTheme(Entity e){
@@ -82,6 +101,38 @@ public class Util {
 	}
 	
 	
+	public static void addQuizz(Quizz quizz){
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+				
+		for(Question q: quizz.getQuestions()){
+			
+			Entity e = new Entity("Question");
+			e.setIndexedProperty("Theme", quizz.getRelatedTheme());
+			e.setIndexedProperty("Text", q.getContent());
+			e.setIndexedProperty("answer1", q.getOthersChoices().get(0));
+			e.setIndexedProperty("answer2", q.getOthersChoices().get(1));
+			e.setIndexedProperty("answer3", q.getOthersChoices().get(2));
+			e.setIndexedProperty("answer4", q.getReponse());
+			e.setIndexedProperty("correct", q.getReponse());
+			
+			datastore.put(e);
+		}
+		
+	
+	}
+	
+	// Return list of questions //
+	public static List<Entity> getQuizzFromTheme(String theme){
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+				
+		Filter propertyFilter = new FilterPredicate("Theme", FilterOperator.EQUAL, theme);
+		
+		Query q = new Query("Question").setFilter(propertyFilter);
+		List<Entity> list =  datastore.prepare(q).asList(FetchOptions.Builder.withDefaults());
+		return list;
+	}
+	
+	
 	public static void deletePersonnality(String key){
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 					
@@ -89,8 +140,6 @@ public class Util {
 		Key employeeKey = e.getKey();
 		
 		datastore.delete(employeeKey);
-		
-		
 	}
 	
 	public static List<Entity> getPersonnalities(String themeName){

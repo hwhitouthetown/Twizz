@@ -2,12 +2,15 @@ package com.entities;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.IdentityType;
+import javax.persistence.Embedded;
+
 
 @PersistenceCapable(identityType=IdentityType.APPLICATION)
 public class Quizz {
@@ -20,9 +23,8 @@ public class Quizz {
 	@Persistent
 	private Timestamp creationTime;
 	@Persistent
-	private ArrayList<Question> questions;
+	private @Embedded List<Question> questions;
 	
-
 	public Quizz(String relatedTheme) {
 		creationTime = new Timestamp(System.currentTimeMillis());
 		this.relatedTheme = relatedTheme;
@@ -40,7 +42,7 @@ public class Quizz {
 	public void setCreationTime(Timestamp creationTime) {
 		this.creationTime = creationTime;
 	}
-	public ArrayList<Question> getQuestions() {
+	public List<Question> getQuestions() {
 		return questions;
 	}
 	public void setQuestions(ArrayList<Question> questions) {

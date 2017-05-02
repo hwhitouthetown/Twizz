@@ -1,5 +1,6 @@
 package com.entities;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
@@ -22,9 +23,16 @@ public class Question {
 	@Persistent
 	private String reponse; 
 	@Persistent
-	private ArrayList<String> othersChoices;
+	private List<String> othersChoices;
 	
 	
+	
+	public Question() {
+		this.nbChoices = DEFAULT_NB_CHOICE;
+		this.content = "";
+		this.reponse = "";
+		this.othersChoices = new ArrayList<String>();
+	}
 	
 	public Question( String content, String reponse) {
 		this.nbChoices = DEFAULT_NB_CHOICE;
@@ -69,7 +77,7 @@ public class Question {
 		this.reponse = reponse;
 	}
 
-	public ArrayList<String> getOthersChoices() {
+	public List<String> getOthersChoices() {
 		return othersChoices;
 	}
 
