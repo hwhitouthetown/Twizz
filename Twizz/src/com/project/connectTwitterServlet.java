@@ -88,7 +88,7 @@ public class connectTwitterServlet extends HttpServlet {
 
 		Status s = selectTweet(status);
 
-		if (s.equals(null)) {
+		if (s==null) {
 			i--;
 		} else {
 
