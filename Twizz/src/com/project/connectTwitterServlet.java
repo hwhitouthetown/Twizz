@@ -114,9 +114,8 @@ public class connectTwitterServlet extends HttpServlet {
 
 			question.addChoice(other.getRealName());
 			quizz.addQuestion(question);
-
-			resp.getWriter().println(question);
 		}
+		
 	}
 
 	Timestamp ts = new Timestamp(System.currentTimeMillis());
@@ -124,6 +123,8 @@ public class connectTwitterServlet extends HttpServlet {
 	quizz.setCreationTime(ts);Util.getQuotas(twitter);
 	
 	Util.addQuizz(quizz);
+	
+	resp.getWriter().println("5 questions generated for category :"+ theme);
 
 	}
 

@@ -46,11 +46,11 @@ public class UpdatePersonnalitiesNameServlet extends HttpServlet {
 		Twitter twitter = factory.getInstance();
 
 		try {
-			resp.getWriter().println(twitter.getAccountSettings().toString());
+			twitter.getAccountSettings().toString();
 		} catch (TwitterException e) {
 			e.printStackTrace();
 		}
-		resp.getWriter().println(twitter.getAuthorization().toString());
+	
 
 		List<Entity> listPersonnalityTheme = Util.getPersonnalities();
 
@@ -74,6 +74,8 @@ public class UpdatePersonnalitiesNameServlet extends HttpServlet {
 		}
 
 		Util.updatePersonnalities(listPersonnalityTheme);
+		
+		resp.getWriter().println("Names updated");
 
 	}
 
