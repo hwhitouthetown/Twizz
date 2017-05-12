@@ -1,0 +1,42 @@
+
+		
+	<div class="themeChoice" ng-show="themeChoice">
+		<button ng-click="politique()">Politiques</button>
+		<button ng-click="humoristes()">Humoristes</button>
+		<button ng-click="chanteurs()">Chanteurs</button>
+	</div>
+		
+		
+		<div class="quiz-area" ng-show="inProgress">
+			<div ng-show="!quizOver">
+				<h2 id="question">{{question}}</h2>
+				<ul id="options">
+					<li ng-repeat="option in options">
+					<label>
+						<input type="radio" name="answer" value="{{option}}">
+						{{option}}
+						</label>
+					</li>
+				</ul>
+		<button ng-click="checkAnswer()" ng-show="answerMode">Valider</button>
+
+		<div ng-show="!answerMode">
+			<button ng-click="nextQuestion()" class="next-question">Question suivante</button>
+			<span ng-show="correctAns">Correct</span>
+			<span ng-show="!correctAns">Faux</span>
+		</div>
+	</div>
+
+	<div class="quizOver" ng-show="quizOver">
+		<h2>Quiz terminé !</h2>
+		<button ng-click="reset()">Rejouer</button>
+	</div>
+
+	<div id="score">
+		Score: {{score}}
+	</div>
+</div>
+
+<div class="intro" ng-show="!inProgress && !themeChoice" >
+	<button id="startQuiz" ng-click="start()">Jouez</button>
+</div>
